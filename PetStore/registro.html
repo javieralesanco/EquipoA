@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PetStore - Login</title>
+    <title>PetStore - Registro</title>
     <link rel="stylesheet" href="css/login.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,600,0,0" />
-    <meta content="Página de login de la PetStore" name="description" />
+    <meta content="Página de registro de la PetStore" name="description" />
     <meta
-      content="login,inicio de sesion, petstore,tienda de animales, usuario, contraseña"
+      content="registro,register, petstore,tienda de animales, usuario, contraseña,email,birthday, b-day, cumpleaños, password"
       name="keywords" />
   </head>
   <body>
@@ -22,10 +22,10 @@
             <img src="img/logo.png" alt="logo" />
           </div>
           <div class="login-card-header">
-            <h1>Inicio de sesión</h1>
-            <div>Por favor inicia sesion para usar la plataforma</div>
+            <h1>Registro</h1>
+            <div>Formulario de registro de usuario</div>
           </div>
-          <form class="login-card-form">
+          <form class="login-card-form" action="login.html">
             <div class="form-item">
               <span class="form-item-icon material-symbols-rounded"
                 >person</span
@@ -47,17 +47,14 @@
             </div>
             <div class="form-item-other">
               <div class="checkbox">
-                <input type="checkbox" id="rememberMeCheckbox" checked />
-                <label for="rememberMeCheckbox">Recuérdame</label>
+                <input type="checkbox" id="terminosCheckbox" required />
+                <label for="terminosCheckbox"
+                  >Acepto los términos y condiciones</label
+                >
               </div>
-              <a href="#">He olvidado mi contraseña!</a>
             </div>
-            <button type="submit">Login</button>
+            <button type="submit">Registrar</button>
           </form>
-          <div class="login-card-footer">
-            ¿No tienes cuenta?
-            <a href="registro.html">Crea una cuenta gratis.</a>
-          </div>
         </div>
       </div>
     </main>
