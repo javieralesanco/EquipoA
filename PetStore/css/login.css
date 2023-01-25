@@ -117,6 +117,7 @@ body {
 /* Login Card Form Elements */
 .login-card input[type="text"],
 .login-card input[type="password"],
+.login-card input[type="tel"],
 .login-card input[type="email"] {
   border: none;
   outline: none;
