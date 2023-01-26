@@ -29,3 +29,11 @@ nav ul li a {
   margin: 0 auto;
   text-align: center;
 }
+
+footer p {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid #dbdbdb;
+  text-align: center;
+  align-items: center;
+}
