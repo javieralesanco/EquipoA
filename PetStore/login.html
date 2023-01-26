@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Página de login de la PetStore" name="description" />
+    <meta
+      content="login,inicio de sesion, petstore,tienda de animales, usuario, contraseña"
+      name="keywords" />
+    <title>PetStore - Login</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/login.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,600,0,0" />
+  </head>
+  <body>
+    <main>
+      <div class="login-card-container">
+        <div class="login-card">
+          <div class="login-card-logo">
+            <img src="img/logo.png" alt="logo" />
+          </div>
+          <div class="login-card-header">
+            <h1>Inicio de sesión</h1>
+            <div>Por favor inicia sesion para usar la plataforma</div>
+          </div>
+          <form class="login-card-form">
+            <div class="form-item">
+              <span class="form-item-icon material-symbols-rounded"
+                >person</span
+              >
+              <input
+                type="text"
+                placeholder="Introduce usuario"
+                id="user"
+                autofocus
+                required />
+            </div>
+            <div class="form-item">
+              <span class="form-item-icon material-symbols-rounded">lock</span>
+              <input
+                type="password"
+                placeholder="Introduce contraseña"
+                id="password"
+                required />
+            </div>
+            <div class="form-item-other">
+              <div class="checkbox">
+                <input type="checkbox" id="rememberMeCheckbox" checked />
+                <label for="rememberMeCheckbox">Recuérdame</label>
+              </div>
+              <a href="#">He olvidado mi contraseña!</a>
+            </div>
+            <button type="submit">Login</button>
+          </form>
+          <div class="login-card-footer">
+            ¿No tienes cuenta?
+            <a href="registro.html">Crea una cuenta gratis.</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
