@@ -1,4 +1,4 @@
-nav a img {
+header a img {
   width: 3.75em;
 }
 
@@ -22,4 +22,10 @@ nav ul li a {
 nav ul li a:hover {
   text-decoration: none;
   color: pink;
+}
+
+header a img,
+nav ul li a {
+  margin: 0 auto;
+  text-align: center;
 }
