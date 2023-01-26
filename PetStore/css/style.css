@@ -22,9 +22,15 @@ footer a {
 }
 
 nav a img {
-  width: 60px;
+  width: 3.75em;
 }
 
-nav ul li:hover {
+nav ul li:hover > ul {
+  display: block;
   background: linear-gradient(to right, #333399, #ff00cc);
+}
+
+nav li ul {
+  display: none;
+  position: absolute;
 }
