@@ -1,0 +1,30 @@
+nav ul,
+footer {
+  background: linear-gradient(to right, #333399, #ff00cc);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+nav ul li {
+  list-style-type: none;
+}
+
+footer a,
+footer,
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a {
+  color: yellow;
+}
+
+nav a img {
+  width: 60px;
+}
+
+nav ul li:hover {
+  background: linear-gradient(to right, #333399, #ff00cc);
+}
