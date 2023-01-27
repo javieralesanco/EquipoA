@@ -5,9 +5,15 @@ nav li {
 }
 
 :root {
-  --bg-color: #222327;
   --text-color: #fff;
-  --main-color: #29fd53;
+  --main-color: linear-gradient(45deg, #131086, #b621f3);
+}
+
+footer p,
+footer a {
+  color: var(--text-color);
+  text-align: right;
+  margin-right: 1em;
 }
 
 header {
@@ -103,7 +109,7 @@ header a span img {
   }
 }
 
-@media (max-width: 769px) {
+@media (max-width: 768px) {
   #menu {
     display: block;
   }
@@ -127,7 +133,7 @@ header a span img {
 
   .navbar a:hover {
     color: var(--text-color);
-    transform: translateY(5px);
+    transform: translateX(5px);
   }
   .navbar a:active {
     color: var(--text-color);
