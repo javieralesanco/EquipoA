@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+/* Movil */
+@media screen and (max-width: 490px) {
+    .desktop-table {
+        display: none;
+    }
+
+
+    .mobile-list div {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        margin: 2%;
+    }
+
+    .card-body {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+/* Tablet */
+@media screen and (min-width: 491px) and (max-width: 860px) {
+    .desktop-table {
+        font-size: 0.8em;
+    }
+
+    .mobile-list {
+        display: none;
+    }
+}
+
+/* Desktop */
+@media screen and (min-width: 861px) {
+    .mobile-list {
+        display: none;
+    }
+}
