@@ -1,10 +1,10 @@
 'use strict';
 import probarTodo from "./validador.js";
-import setAllErrores from "./errores.js";ç
+import setAllErrores from "./errores.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById('formcontacto');
-    form.addEventListener('submit',validar);
+    form.addEventListener('submit', validar);
 });
 function validar(event) {
     const mensaje = new Mensaje(
@@ -22,14 +22,14 @@ function validar(event) {
     if (!check) {
         setAllErrores(document.getElementsByClassName('error'), errores);
         event.stopPropagation();
-        
-    }   
+
+    }
 }
 
 
-function Mensaje(nombre,correo,asunto,contenido) {
-    this.nombre=nombre;
-    this.correo=correo;
-    this.asunto=asunto;
-    this.contenido=contenido;
+function Mensaje(nombre, correo, asunto, contenido) {
+    this.nombre = nombre;
+    this.correo = correo;
+    this.asunto = asunto;
+    this.contenido = contenido;
 }
