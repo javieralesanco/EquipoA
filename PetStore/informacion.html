@@ -1,3 +1,9 @@
+<!-- La página tendrá toda la información disponible sobre los
+animales, por defecto toda la información no se podrá modificar,
+habrán dos botones/iconos, 
+un botón/icono que al darle permita modificar la información 
+y otro botón/icono que al darle borre toda la información. -->
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,8 +15,6 @@
     <link rel="stylesheet" href="css/nav.css" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,600,0,0" />
-    <script src="js/crear.js" type="module"></script>
-    <script src="js/menu.js" type="module"></script>
     <title>información</title>
 </head>
 
@@ -32,9 +36,15 @@
     </header>
 
     <main>
-
         <div class="container">
-                
+            <div class="informacionAnimales">
+
+            </div>
+
+            <form action="">
+                <input type="button" name="modificarOK" id="Modificar" value="Modificar">
+                <input type="button" name="borrarOK" id="Borrar" value="Borrar">
+            </form>
         </div>
 
         <footer>
