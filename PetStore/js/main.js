@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 const createPet = (pet) => {
     const abuelo = document.getElementById('main');
     const top = document.createElement('div');
-    top.classList.add('card');
+    top.classList.add(`card ${estado}`);
     const img = document.createElement('img');
     img.classList.add('card-img-top');
     img.src = checkUrl(pet.photoUrls);
@@ -75,7 +75,7 @@ function checkUrl(arrayUrl) {
             return url;
     });
     url = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
-    if (Math.random() < (1 / 4856))
+    if (Math.random() <= (1 / 4856))
         url += 'shiny/';
     url += Math.floor(Math.random() * 1008);
     url += '.png';
@@ -85,8 +85,11 @@ function checkUrl(arrayUrl) {
 // sprites, front_default,front_shiny
 function tryUrl(url) {
     try {
-        new URL(miurl);
-        return true;
+        //https://developer.mozilla.org/es/docs/Web/HTML/Element/img#attr-src
+        new URL(url);
+        if (Regex.IsMatch(filename.ToLower(), /^.*\.(jpg|gif|png|jpeg|svg)$/g))
+            return true;
+        return false;
     } catch (err) {
         return false;
     }
