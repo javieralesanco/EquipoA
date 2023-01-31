@@ -26,10 +26,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (validarTelefono(telefono)) { error = true; }
 
         if (!error) {
-            let id = (Math.random() * 20000) + 200
-            console.log(id);
+
             const data = {
-                "id": id,
+
                 "username": usuario,
                 "firstName": nombre,
                 "lastName": apellido,
@@ -39,8 +38,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                 "userStatus": 1
             };
 
-            //const resultado = await postData(data);
-            alert("Registrado con éxito "+resultado);
+            const resultado = await postData(data);
+            alert("Registrado con éxito ");
             form.submit();
 
         }
@@ -72,10 +71,10 @@ function validarGenerico(valor, idError) {
 
 
 function validarContraseña(contra1, contra2) {
-    if(contra1.length < 6){
+    if (contra1.length < 6) {
         document.getElementById("errorContra").style.display = "block";
         return true;
-    }else{
+    } else {
         if (contra1 != contra2) {
             document.getElementById("errorPass").style.display = "block";
             return true;
@@ -85,7 +84,7 @@ function validarContraseña(contra1, contra2) {
 
     }
 
-   
+
 }
 
 function validarTelefono(valor) {
@@ -107,7 +106,8 @@ async function postData(datos) {
         body: JSON.stringify(datos)
     }).catch(error => {
         {
-            alert("Error, el usuario especificado ya existe "+error);
+
+            alert("Error, el usuario especificado ya existe ");
         }
     })
         .then(response => response.json());
