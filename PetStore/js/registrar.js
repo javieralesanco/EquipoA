@@ -1,3 +1,5 @@
+"use strict";
+
 document.addEventListener("DOMContentLoaded", async function () {
     resetErrores();
     const form = document.getElementById("formulario");
@@ -24,8 +26,10 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (validarTelefono(telefono)) { error = true; }
 
         if (!error) {
+            let id = (Math.random() * 20000) + 200
+            console.log(id);
             const data = {
-                "id": 2000,
+                "id": id,
                 "username": usuario,
                 "firstName": nombre,
                 "lastName": apellido,
@@ -36,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             };
 
             //const resultado = await postData(data);
-            //alert(resultado);
+            alert("Registrado con éxito "+resultado);
             form.submit();
 
         }
@@ -52,6 +56,7 @@ function resetErrores() {
     document.getElementById("errorUser").style.display = "none";
     document.getElementById("errorEmail").style.display = "none";
     document.getElementById("errorPass").style.display = "none";
+    document.getElementById("errorContra").style.display = "none";
     document.getElementById("errorTel").style.display = "none";
 }
 
@@ -67,12 +72,20 @@ function validarGenerico(valor, idError) {
 
 
 function validarContraseña(contra1, contra2) {
-    if (contra1 == '' || contra1 != contra2) {
-        document.getElementById("errorPass").style.display = "block";
+    if(contra1.length < 6){
+        document.getElementById("errorContra").style.display = "block";
         return true;
-    } else {
-        return false;
+    }else{
+        if (contra1 != contra2) {
+            document.getElementById("errorPass").style.display = "block";
+            return true;
+        } else {
+            return false;
+        }
+
     }
+
+   
 }
 
 function validarTelefono(valor) {
@@ -94,7 +107,7 @@ async function postData(datos) {
         body: JSON.stringify(datos)
     }).catch(error => {
         {
-            alert(error);
+            alert("Error, el usuario especificado ya existe "+error);
         }
     })
         .then(response => response.json());

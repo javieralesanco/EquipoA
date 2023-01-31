@@ -29,7 +29,7 @@
           <h1>Registro</h1>
           <div>Formulario de registro de usuario</div>
         </div>
-        <form class="login-card-form" id="formulario" action="login.html">
+        <form class="login-card-form" id="formulario" action="login.html" method="GET">
           <div class="form-item">
             <span class="form-item-icon material-symbols-rounded">account_circle</span>
             <input type="text" placeholder="Introduce nombre" id="nombre" autofocus />
@@ -54,7 +54,7 @@
             <span class="form-item-icon material-symbols-rounded">lock</span>
             <input type="password" placeholder="Introduce contraseña" id="password" />
           </div>
-
+          <span class="error" id="errorContra">La contraseña debe tener al menos 6 caracteres</span>
           <div class="form-item">
             <span class="form-item-icon material-symbols-rounded">lock_reset</span>
             <input type="password" placeholder="Vuelve a introducir la contraseña" id="confirmPassword" />
