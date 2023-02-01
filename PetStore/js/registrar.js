@@ -6,8 +6,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     form.addEventListener("submit", async (event) => {
         resetErrores();
-        event.preventDefault();
-        event.stopPropagation();
+
 
         const usuario = document.getElementById("usuario").value;
         const nombre = document.getElementById("nombre").value;
@@ -39,8 +38,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             };
 
             const resultado = await postData(data);
-            alert("Registrado con éxito ");
-            form.submit();
+            window.location.href = "informacion.html";
 
         }
 
@@ -107,7 +105,7 @@ async function postData(datos) {
     }).catch(error => {
         {
 
-            alert("Error, el usuario especificado ya existe ");
+            alert("Error, el nombre de usuario especificado ya existe ");
         }
     })
         .then(response => response.json());
