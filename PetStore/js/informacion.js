@@ -1,3 +1,4 @@
+'use strict'
 
 document.addEventListener("DOMContentLoaded", function () {
     const modificar = document.getElementById("Modificar");
@@ -15,6 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function mostrarMascota(id) {
+
+    fetch(`https://petstore.swagger.io/v2/pet/${id}`)
+
 
 }
 function modificarMascota(id) {
