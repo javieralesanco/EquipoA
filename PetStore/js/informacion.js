@@ -3,9 +3,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const modificar = document.getElementById("Modificar");
     const eliminar = document.getElementById("Borrar");
-    id = getIdFromUrl();
-
-    mostrarMascota(id);
+    // id = getIdFromUrl();
+    // mostrarMascota(id);  
 
     modificar.addEventListener("click", function () {
         modificarMascota();
@@ -17,14 +16,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function mostrarMascota(id) {
 
-    fetch(`https://petstore.swagger.io/v2/pet/${id}`)
-
 
 }
 function modificarMascota(id) {
 
 }
 function eliminarMascota(id) {
+    const element = document.querySelector('.informacionAnimales');
+    // fetch(`https://petstore.swagger.io/v2/pet/${id}`, { method: 'DELETE' })
+    //     .then(() => element.innerHTML = 'Delete successful');
+    fetch(`https://petstore.swagger.io/v2/pet/1000`, { method: 'DELETE' })
+        .then(() => element.innerHTML = 'Delete successful');
 
 }
 
