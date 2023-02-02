@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", async function () {
+"use strict";
+
+document.addEventListener("DOMContentLoaded", function () {
     resetErrores();
     const form = document.getElementById("formulario");
 
@@ -6,6 +8,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         resetErrores();
         event.preventDefault();
         event.stopPropagation();
+
 
         const usuario = document.getElementById("usuario").value;
         const nombre = document.getElementById("nombre").value;
@@ -24,8 +27,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (validarTelefono(telefono)) { error = true; }
 
         if (!error) {
+
             const data = {
-                "id": 2000,
+
                 "username": usuario,
                 "firstName": nombre,
                 "lastName": apellido,
@@ -35,9 +39,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                 "userStatus": 1
             };
 
-            //const resultado = await postData(data);
-            //alert(resultado);
-            form.submit();
+            await postData(data, usuario);
+
 
         }
 
@@ -52,6 +55,7 @@ function resetErrores() {
     document.getElementById("errorUser").style.display = "none";
     document.getElementById("errorEmail").style.display = "none";
     document.getElementById("errorPass").style.display = "none";
+    document.getElementById("errorContra").style.display = "none";
     document.getElementById("errorTel").style.display = "none";
 }
 
@@ -67,12 +71,20 @@ function validarGenerico(valor, idError) {
 
 
 function validarContraseña(contra1, contra2) {
-    if (contra1 == '' || contra1 != contra2) {
-        document.getElementById("errorPass").style.display = "block";
+    if (contra1.length < 6) {
+        document.getElementById("errorContra").style.display = "block";
         return true;
     } else {
-        return false;
+        if (contra1 != contra2) {
+            document.getElementById("errorPass").style.display = "block";
+            return true;
+        } else {
+            return false;
+        }
+
     }
+
+
 }
 
 function validarTelefono(valor) {
@@ -84,8 +96,8 @@ function validarTelefono(valor) {
     }
 }
 
-async function postData(datos) {
-    await fetch('https://petstore.swagger.io/v2/user', {
+async function postData(datos, usuario) {
+    fetch('https://petstore.swagger.io/v2/user', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -94,8 +106,13 @@ async function postData(datos) {
         body: JSON.stringify(datos)
     }).catch(error => {
         {
-            alert(error);
+
+            alert("Error, el nombre de usuario especificado ya existe");
+
         }
-    })
-        .then(response => response.json());
+    }).then(response => {
+        localStorage.setItem("sesion", JSON.stringify(usuario));
+        window.location.href = "informacion.html";
+    }
+    );
 }

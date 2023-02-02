@@ -18,6 +18,14 @@ body {
   display: none;
 }
 
+.error2 {
+  color: red;
+  font-size: 12pt;
+  margin-top: 10px;
+  text-align: center;
+  display: none;
+}
+
 /* Login Card */
 .login-card {
   width: 450px;
