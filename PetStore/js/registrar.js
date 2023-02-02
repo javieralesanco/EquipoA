@@ -1,11 +1,13 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", function () {
     resetErrores();
     const form = document.getElementById("formulario");
 
     form.addEventListener("submit", async (event) => {
         resetErrores();
+        event.preventDefault();
+        event.stopPropagation();
 
 
         const usuario = document.getElementById("usuario").value;
@@ -37,8 +39,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                 "userStatus": 1
             };
 
-            const resultado = await postData(data);
-            window.location.href = "informacion.html";
+            await postData(data, usuario);
+
 
         }
 
@@ -94,8 +96,8 @@ function validarTelefono(valor) {
     }
 }
 
-async function postData(datos) {
-    await fetch('https://petstore.swagger.io/v2/user', {
+async function postData(datos, usuario) {
+    fetch('https://petstore.swagger.io/v2/user', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -105,8 +107,12 @@ async function postData(datos) {
     }).catch(error => {
         {
 
-            alert("Error, el nombre de usuario especificado ya existe ");
+            alert("Error, el nombre de usuario especificado ya existe");
+
         }
-    })
-        .then(response => response.json());
+    }).then(response => {
+        localStorage.setItem("sesion", JSON.stringify(usuario));
+        window.location.href = "informacion.html";
+    }
+    );
 }
