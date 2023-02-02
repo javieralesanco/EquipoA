@@ -10,15 +10,6 @@
     <title>PetStore</title>
     <script src="js/main.js" type="module"></script>
     <style>
-        main {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-        }
-
-        .card {
-            width: 18em;
-        }
-
         .pending {
             background-color: #FF0;
         }
@@ -30,11 +21,29 @@
         .sold {
             background-color: #F00;
         }
+
+        .card {
+            width: 20%;
+            margin: 1em;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-title {
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
-    <main id="main">
+    <main class="d-flex justify-content-center">
+        <div id="main" class="container row justify-content-between">
+
+        </div>
         <div class="card">
             <img class="card-img-top" src="..." alt="Card image cap">
             <div class="card-body">
