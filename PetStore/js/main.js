@@ -1,10 +1,21 @@
 document.addEventListener('DOMContentLoaded', function () {
-
+    llama('available');
+    llama('pending');
+    llama('sold');
 });
+const llama = (variable) => {
+    fetch(`https://petstore.swagger.io/v2/pet/findByStatus?status=${variable}`)
+        .then((response) => response.json())
+        .then((objeto) => {
+            objeto.forEach(element => {
+                createPet(element);
+            });
+        })
+}
 const createPet = (pet) => {
     const abuelo = document.getElementById('main');
     const top = document.createElement('div');
-    top.classList.add(`card ${estado}`);
+    top.classList.add('card', `${pet.status}`);
     const img = document.createElement('img');
     img.classList.add('card-img-top');
     img.src = checkUrl(pet.photoUrls);
@@ -24,9 +35,11 @@ const createPet = (pet) => {
     top.appendChild(divUno);
 
     const ul = document.createElement('ul');
-    ul.classList.add('list-group list-group-flush');
+    ul.classList.add('list-group', 'list-group-flush');
     const li = document.createElement('li');
-    li.classList.add('llist-group-item');
+    li.classList.add('list-group-item');
+    if (pet.category === undefined)
+        return;
     li.textContent = pet.category.name;
     ul.appendChild(li);
     top.appendChild(ul);
@@ -35,7 +48,7 @@ const createPet = (pet) => {
     divDos.classList.add('card-body');
     const formUno = document.createElement('form');
     formUno.method = 'get';
-    formUno.action = 'cambiar';
+    formUno.action = 'informacion.html';
     const buttonUno = document.createElement('button');
     buttonUno.type = 'submit';
     buttonUno.name = 'ver';
@@ -47,7 +60,7 @@ const createPet = (pet) => {
 
     const formDos = document.createElement('form');
     formDos.method = 'get';
-    formDos.action = 'cambiar';
+    formDos.action = 'informacion.html';
     const buttonDos = document.createElement('button');
     buttonDos.type = 'submit';
     buttonDos.name = 'mod';
@@ -58,12 +71,12 @@ const createPet = (pet) => {
     divDos.appendChild(formDos);
 
     const buttonTres = document.createElement('button');
-    buttonDos.type = 'button';
-    buttonDos.name = 'delete';
-    buttonDos.value = pet.id;
-    buttonDos.id = 'generarEliminar';
-    buttonDos.classList.add('card-link');
-    buttonDos.textContent = 'Eliminar';
+    buttonTres.type = 'button';
+    buttonTres.name = 'delete';
+    buttonTres.value = pet.id;
+    buttonTres.id = 'generarEliminar';
+    buttonTres.classList.add('card-link');
+    buttonTres.textContent = 'Eliminar';
     divDos.appendChild(buttonTres);
     top.appendChild(divDos);
 
@@ -74,20 +87,17 @@ function checkUrl(arrayUrl) {
         if (tryUrl(url))
             return url;
     });
-    url = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+    let url = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
     if (Math.random() <= (1 / 4856))
         url += 'shiny/';
-    url += Math.floor(Math.random() * 1008);
+    url += Math.floor(Math.random() * 906);
     url += '.png';
     return url;
 }
-// https://pokeapi.co/api/v2/pokemon/{id or name}/
-// sprites, front_default,front_shiny
 function tryUrl(url) {
     try {
-        //https://developer.mozilla.org/es/docs/Web/HTML/Element/img#attr-src
         new URL(url);
-        if (Regex.IsMatch(filename.ToLower(), /^.*\.(jpg|gif|png|jpeg|svg)$/g))
+        if (Regex.IsMatch(url.ToLower(), /"(?:http:\/\/)(.*?)\/(.+?)(?:\/|\?|\#|$|\n)\w*.(jpg|gif|png|jpeg|svg|bmp|dib|ico)"g/g))
             return true;
         return false;
     } catch (err) {
