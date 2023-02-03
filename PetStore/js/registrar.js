@@ -111,7 +111,7 @@ async function postData(datos, usuario) {
 
         }
     }).then(response => {
-        localStorage.setItem("sesion", JSON.stringify(usuario));
+        sessionStorage.setItem("sesion", JSON.stringify(usuario));
         window.location.href = "informacion.html";
     }
     );

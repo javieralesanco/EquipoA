@@ -23,8 +23,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         console.log(data.username);
         if (data.username == usuario && data.password == contraseña) {
-          localStorage.setItem("sesion", JSON.stringify(usuario));
-          // let datos = JSON.parse(localStorage.getItem("arrayPiramide" || "[]"));
+          sessionStorage.setItem("sesion", JSON.stringify(usuario));
           window.location.href = "informacion.html";
         } else {
 
