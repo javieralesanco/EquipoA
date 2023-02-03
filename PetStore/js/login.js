@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   const form = document.getElementById("formulario2");
 
   form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     document.getElementById('errorCredenciales').style.display = "none";
     document.getElementById('errorUser').style.display = "none";
 
