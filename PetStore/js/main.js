@@ -45,15 +45,15 @@ const createPet = (pet) => {
     divUno.appendChild(p);
     top.appendChild(divUno);
 
-    const ul = document.createElement('ul');
-    ul.classList.add('list-group', 'list-group-flush');
-    const li = document.createElement('li');
-    li.classList.add('list-group-item');
-    if (pet.category === undefined)
-        return;
-    li.textContent = pet.category.name;
-    ul.appendChild(li);
-    top.appendChild(ul);
+    // const ul = document.createElement('ul');
+    // ul.classList.add('list-group', 'list-group-flush');
+    // const li = document.createElement('li');
+    // li.classList.add('list-group-item');
+    // if (pet.category === undefined)
+    //     return;
+    // li.textContent = pet.category.name;
+    // ul.appendChild(li);
+    // top.appendChild(ul);
 
     const divDos = document.createElement('div');
     divDos.classList.add('card-body');
