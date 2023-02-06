@@ -18,6 +18,8 @@ const llama = (variable) => {
         })
 }
 const createPet = (pet) => {
+    if (pet.category === undefined)
+        return;
     const abuelo = document.getElementById('main');
     const top = document.createElement('div');
     top.classList.add('card', `${pet.status}`);
@@ -35,54 +37,46 @@ const createPet = (pet) => {
     divUno.appendChild(h5);
     const p = document.createElement('p');
     p.classList.add('card-text');
-    p.textContent = pet.status;
+    switch (pet.status) {
+        case 'available':
+            pet.status = 'Disponible'
+            break;
+        case 'pending':
+            pet.status = 'Reservado'
+            break;
+        case 'sold':
+            pet.status = 'Vendido'
+            break;
+    }
+    p.textContent = `Estado: ${pet.status}`;
     divUno.appendChild(p);
     top.appendChild(divUno);
 
-    const ul = document.createElement('ul');
-    ul.classList.add('list-group', 'list-group-flush');
-    const li = document.createElement('li');
-    li.classList.add('list-group-item');
-    if (pet.category === undefined)
-        return;
-    li.textContent = pet.category.name;
-    ul.appendChild(li);
-    top.appendChild(ul);
+    // const ul = document.createElement('ul');
+    // ul.classList.add('list-group', 'list-group-flush');
+    // const li = document.createElement('li');
+    // li.classList.add('list-group-item');
+    // if (pet.category === undefined)
+    //     return;
+    // li.textContent = pet.category.name;
+    // ul.appendChild(li);
+    // top.appendChild(ul);
 
     const divDos = document.createElement('div');
     divDos.classList.add('card-body');
-    const formUno = document.createElement('form');
-    formUno.method = 'get';
-    formUno.action = 'informacion.html';
-    const buttonUno = document.createElement('button');
-    buttonUno.type = 'submit';
-    buttonUno.name = 'ver';
-    buttonUno.value = pet.id;
-    buttonUno.classList.add('card-link');
-    buttonUno.textContent = 'Ver';
-    formUno.appendChild(buttonUno);
-    divDos.appendChild(formUno);
+    const form = document.createElement('form');
+    form.method = 'get';
+    form.action = 'informacion.html';
+    form.classList.add('d-flex', 'justify-content-center', 'align-items-center');
+    const button = document.createElement('button');
+    button.type = 'submit';
+    button.name = 'id';
+    button.value = pet.id;
+    button.classList.add('card-link');
+    button.textContent = 'Mas información';
+    form.appendChild(button);
+    divDos.appendChild(form);
 
-    const formDos = document.createElement('form');
-    formDos.method = 'get';
-    formDos.action = 'informacion.html';
-    const buttonDos = document.createElement('button');
-    buttonDos.type = 'submit';
-    buttonDos.name = 'mod';
-    buttonDos.value = pet.id;
-    buttonDos.classList.add('card-link');
-    buttonDos.textContent = 'Modificar';
-    formDos.appendChild(buttonDos);
-    divDos.appendChild(formDos);
-
-    const buttonTres = document.createElement('button');
-    buttonTres.type = 'button';
-    buttonTres.name = 'delete';
-    buttonTres.value = pet.id;
-    buttonTres.id = 'generarEliminar';
-    buttonTres.classList.add('card-link');
-    buttonTres.textContent = 'Eliminar';
-    divDos.appendChild(buttonTres);
     top.appendChild(divDos);
 
     abuelo.appendChild(top);
@@ -102,7 +96,7 @@ function checkUrl(arrayUrl) {
 function tryUrl(url) {
     try {
         new URL(url);
-        if (Regex.IsMatch(url.ToLower(), /"(?:http:\/\/)(.*?)\/(.+?)(?:\/|\?|\#|$|\n)\w*.(jpg|gif|png|jpeg|svg|bmp|dib|ico)"g/g))
+        if (Regex.IsMatch(url.ToLower(), /(?:http:\/\/)(.*?)\/(.+?)(?:\/|\?|\#|$|\n)\w*.(jpg|gif|png|jpeg|svg|bmp|dib|ico)/g))
             return true;
         return false;
     } catch (err) {
