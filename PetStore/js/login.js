@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   const form = document.getElementById("formulario2");
 
   form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     document.getElementById('errorCredenciales').style.display = "none";
     document.getElementById('errorUser').style.display = "none";
 
@@ -21,8 +23,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         console.log(data.username);
         if (data.username == usuario && data.password == contraseña) {
-          localStorage.setItem("sesion", JSON.stringify(usuario));
-          // let datos = JSON.parse(localStorage.getItem("arrayPiramide" || "[]"));
+          sessionStorage.setItem("sesion", JSON.stringify(usuario));
           window.location.href = "informacion.html";
         } else {
 
