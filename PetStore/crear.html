@@ -5,31 +5,38 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/informacion.css" />
+  <link rel="stylesheet" href="css/navYFooter.css" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,600,0,0" />
+  <script src="js/logout.js"></script>
+
   <script src="js/crear.js" type="module"></script>
   <script src="js/menu.js" type="module"></script>
   <title>Crear Animal</title>
 </head>
 
 <body>
-  <header>
-    <a href="index.html" class="logo"><span><img src="img/logo.png" alt="Logo Panda" /></span></a>
+  <div class="cabecera">
+    <header>
+      <h1 hidden>PetStore</h1>
+      <figure>
+        <a href="index.html">
+          <img src="img/logo.png" alt="Oso panda">
+        </a>
+      </figure>
+    </header>
     <nav>
-      <ul class="navbar">
+      <ul>
         <li><a href="index.html">Inicio</a></li>
-        <li><a href="informacion.html">Información</a></li>
-        <li><a href="#" class="active">Crear</a></li>
+        <li><a href="crear.html">Crear</a></li>
+      </ul>
+      <ul>
+        <button id="logout">Logout</button>
       </ul>
     </nav>
-    <div class="main">
-      <a href="login.html">Login</a>
-      <a href="registro.html">Registro</a>
-      <span class="form-item-icon material-symbols-rounded" id="menu">menu</span>
-    </div>
-  </header>
+  </div>
+
   <main>
     <div class="container">
       <div class="login-left">
@@ -63,7 +70,7 @@
               </div>
             </div>
 
-            <button type="submit">Crear</button>
+            <button id="createButton" type="submit">Crear</button>
           </div>
         </form>
       </div>

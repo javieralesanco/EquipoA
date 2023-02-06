@@ -1,6 +1,10 @@
 'use strict'
 
 document.addEventListener("DOMContentLoaded", function () {
+    if (sessionStorage.getItem('sesion') === null) {
+        window.location.href = "login.html";
+    }
+
     const form = document.querySelector('#form')
     const eliminar = document.getElementById("Borrar");
     const id = getIdFromUrl();
