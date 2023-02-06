@@ -1,34 +1,43 @@
 'use strict'
 
 document.addEventListener("DOMContentLoaded", function () {
-    const modificar = document.getElementById("Modificar");
+    const form = document.querySelector('#form')
     const eliminar = document.getElementById("Borrar");
     const id = getIdFromUrl();
     getPet(id);
 
-    modificar.addEventListener("click", function () {
-        modificarMascota();
-    });
+    form.addEventListener('submit', async (event) => {
+        modificarPet(event);
+    }, false);
+
     eliminar.addEventListener("click", function () {
-        eliminarMascota();
+        eliminarMascota(id);
     })
 });
 
 function mostrarMascota(pet) {
-    const name = document.getElementById('name');
-    const category = document.getElementById('category');
-    const photo = document.getElementById('photo');
-    const tags = document.getElementById('tags');
-    const status = document.getElementById('status');
-    name.textContent += ' : ' + pet.name;
-    category.textContent += ' : ' + pet.category.name;
-    photo.textContent += ' : ' + pet.photoUrls;
-    tags.textContent += ' : ' + pet.tags[0].name;
-    status.textContent += ' : ' + pet.status;
-}
-function modificarMascota(id) {
 
+    const name = document.getElementById('namepet');
+    const category = document.getElementById('categorypet');
+    const photo = document.getElementById('fotopet');
+    const tags = document.getElementById('tagpet');
+    const status = document.getElementById('statuspet');
+
+    name.value = pet.name ?? '';
+    if (pet.category === undefined)
+        category.value = '';
+    else
+        category.value = pet.category.name ?? '';
+    photo.value = pet.photoUrls ?? '';
+
+    if (pet.tags === undefined)
+        tags.value = '';
+    else
+        tags.value = pet.tags[0].name ?? '';
+
+    status.value = pet.status ?? '';
 }
+
 function eliminarMascota(id) {
     const element = document.querySelector('.informacionAnimales');
     fetch(`https://petstore.swagger.io/v2/pet/${id}`, { method: 'DELETE' })
@@ -37,7 +46,7 @@ function eliminarMascota(id) {
 }
 
 function getPet(id) {
-    fetch(`https://petstore.swagger.io/v2/pet/745831`)
+    fetch(`https://petstore.swagger.io/v2/pet/${id}`)
         .then((response) => response.json())
         .then(pet => {
             mostrarMascota(pet);
@@ -50,5 +59,57 @@ function getPet(id) {
 function getIdFromUrl() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    return urlParams.get('mod');
+    return urlParams.get('id');
+}
+
+
+async function modificarPet(event) {
+    event.preventDefault()
+    event.stopPropagation()
+
+    if (!form.checkValidity()) {
+        return;
+    }
+    const categoria = document.querySelector("#categorypet").value;
+    const dogName = document.querySelector("#namepet").value;
+    const tags = document.querySelector('#tagpet').value;
+    const status = document.querySelector('#statuspet').value;
+    const fotopet = document.querySelector('#fotopet').value;
+    const idpet = getIdFromUrl();
+
+    const pet = {
+        id: idpet,
+        category: {
+            id: 0,
+            name: categoria
+        },
+        name: dogName,
+        photoUrls: [
+            fotopet
+        ],
+        tags: [
+            {
+                name: tags
+            }
+        ],
+        status: status
+    };
+    await putData('https://petstore.swagger.io/v2/pet', pet);
+}
+
+async function putData(url = '', data = {}) {
+    await fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'accept': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).catch(error => {
+        {
+            new bootstrap.Modal(document.getElementById('exampleModal')).show();
+            console.log(error)
+        }
+    })
+        .then(response => response.json());
 }
