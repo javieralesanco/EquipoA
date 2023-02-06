@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+    if (sessionStorage.getItem('sesion') === null) {
+        window.location.href = "login.html";
+    }
+
     llama('available');
     llama('pending');
     llama('sold');
