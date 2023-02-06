@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    if (sessionStorage.getItem('sesion') === null) {
-        window.location.href = "login.html";
-    }
+    // if (sessionStorage.getItem('sesion') === null) {
+    //     window.location.href = "login.html";
+    // }
 
     llama('available');
     llama('pending');
@@ -18,6 +18,8 @@ const llama = (variable) => {
         })
 }
 const createPet = (pet) => {
+    if (pet.category === undefined)
+        return;
     const abuelo = document.getElementById('main');
     const top = document.createElement('div');
     top.classList.add('card', `${pet.status}`);

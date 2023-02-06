@@ -1,0 +1,39 @@
+.pending {
+    /* background-color: rgb(231, 231, 84); */
+    background-image: linear-gradient(rgb(231, 231, 84), rgb(167, 167, 66));
+}
+
+.available {
+    /* background-color: rgb(99, 219, 99); */
+    background-image: linear-gradient(rgb(99, 219, 99), rgb(54, 121, 54));
+}
+
+.sold {
+    /* background-color: rgb(221, 56, 56); */
+    background-image: linear-gradient(rgb(221, 56, 56), rgb(173, 36, 36));
+}
+
+.card {
+    min-width: 18em;
+    width: 20%;
+    margin: 1em;
+
+}
+
+button.card-link {
+    border-radius: 10px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-title {
+    text-align: center;
+}
+
+.card-text {
+    text-align: center;
+}
