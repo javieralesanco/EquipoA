@@ -72,7 +72,9 @@
         <!-- .navbar -->
       </div>
     </header>
-    <!-- End Header -->
+    <!-- End Header
+    TODO:EXTREMIANA
+    -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
@@ -103,7 +105,7 @@
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-6">
             <div class="info-box mb-4">
-              <i class="bx bx-map"></i>
+              <em class="bx bx-map"></em>
               <h3>Nuestra Dirección</h3>
               <p>P.º del Prior, 97, 26004 Logroño, La Rioja</p>
             </div>
@@ -111,7 +113,7 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="info-box mb-4">
-              <i class="bx bx-envelope"></i>
+              <em class="bx bx-envelope"></em>
               <h3>Nuestro Email</h3>
               <a href="mailto:oficina@iescomercio.com"
                 >oficina@iescomercio.com</a
@@ -121,7 +123,7 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="info-box mb-4">
-              <i class="bx bx-phone-call"></i>
+              <em class="bx bx-phone-call"></em>
               <h3>Llámanos</h3>
               <a href="tel:+34941256957">+34 941 25 69 57</a>
             </div>
@@ -146,44 +148,57 @@
               id="formcontacto">
               <div class="row">
                 <div class="col form-group">
-                  <input
-                    type="text"
-                    name="name"
-                    class="form-control"
-                    id="name"
-                    placeholder="Tu Nombre"
-                    required />
+                  <label for="name"
+                    >Nombre:
+                    <input
+                      type="text"
+                      name="name"
+                      class="form-control"
+                      id="name"
+                      placeholder="Tu Nombre"
+                      required
+                  /></label>
+
                   <span class="error"></span>
                 </div>
                 <div class="col form-group">
-                  <input
-                    type="email"
-                    class="form-control"
-                    name="email"
-                    id="Email"
-                    placeholder="Tu email"
-                    required />
+                  <label for="Email"
+                    >Email:
+                    <input
+                      type="email"
+                      class="form-control"
+                      name="email"
+                      id="Email"
+                      placeholder="Tu email"
+                      required />
+                  </label>
                   <span class="error"></span>
                 </div>
               </div>
               <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  name="subject"
-                  id="asunto"
-                  placeholder="Asunto"
-                  required />
+                <label for="asunto"
+                  >Asunto:
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="subject"
+                    id="asunto"
+                    placeholder="Asunto"
+                    required />
+                </label>
                 <span class="error"></span>
               </div>
               <div class="form-group">
-                <textarea
-                  class="form-control"
-                  name="message"
-                  id="message"
-                  rows="5"
-                  placeholder="Mensaje"
-                  required></textarea>
+                <label for="message"
+                  >Mensaje:
+                  <textarea
+                    class="form-control"
+                    name="message"
+                    id="message"
+                    rows="5"
+                    placeholder="Mensaje"
+                    required></textarea>
+                </label>
                 <span class="error"></span>
               </div>
               <div class="my-3">
@@ -201,7 +216,10 @@
         </div>
       </div>
     </section>
-    <!-- End Contact Section -->
+    <!-- End Contact Section 
+   TODO: EXTREMIANA
+    -->
+
     <footer id="footer">
       <div class="footer-top">
         <div class="container">
@@ -318,7 +336,9 @@
     <a
       href="#"
       class="back-to-top d-flex align-items-center justify-content-center"
-      ><i class="bi bi-arrow-up-short"></i
+      ><i
+        class="bi bi-arrow-up-short"
+        alt="Flecha para subir arriba de la página"></i
     ></a>
 
     <!-- Vendor JS Files -->
