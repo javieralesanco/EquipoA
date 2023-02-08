@@ -1,0 +1,9 @@
+* {
+    transition: none !important;
+}
+
+.labelCarrusel {
+    background-color: rgba(94, 94, 94, 0.76);
+
+    border-radius: 5px;
+}
