@@ -43,3 +43,8 @@
         display: none;
     }
 }
+
+.texto {
+    display: none;
+    color: rgba(16, 110, 234, 255);
+}
