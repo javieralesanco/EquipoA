@@ -1,0 +1,16 @@
+* {
+    transition: none !important;
+}
+
+.labelCarrusel {
+    background-color: rgba(94, 94, 94, 0.76);
+
+    border-radius: 5px;
+}
+
+.btnCar1 {
+    height: 44px !important;
+    width: 44px !important;
+    border-radius: 20px;
+    color:black;
+}
