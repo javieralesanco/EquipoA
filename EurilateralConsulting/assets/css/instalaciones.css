@@ -12,5 +12,9 @@
     height: 44px !important;
     width: 44px !important;
     border-radius: 20px;
-    color:black;
+    color: black;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #106eea !important;
 }
