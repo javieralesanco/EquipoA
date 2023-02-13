@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -138,7 +138,13 @@
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2943.019886288553!2d-2.432158084273056!3d42.46986573615211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5aab0dbd9ed72d%3A0xda98798954220d52!2sIES%20Comercio!5e0!3m2!1ses!2ses!4v1673984650809!5m2!1ses!2ses"
               frameborder="0"
               style="border: 0; width: 100%; height: 384px"
-              allowfullscreen></iframe>
+              allowfullscreen
+              >Tu navegador no soporta iframes</iframe
+            >
+            <span class="visually-hidden"
+              >Mapa con la ubicación de la empresa (42.47018647066151,
+              -2.429883169318494)</span
+            >
           </div>
 
           <div class="col-lg-6">
@@ -156,6 +162,7 @@
                     class="form-control"
                     id="name"
                     placeholder="Tu Nombre"
+                    title="Nombre"
                     required />
 
                   <span class="error"></span>
@@ -168,6 +175,7 @@
                     name="email"
                     id="Email"
                     placeholder="Tu email"
+                    title="Email"
                     required />
 
                   <span class="error"></span>
@@ -181,6 +189,7 @@
                   name="subject"
                   id="asunto"
                   placeholder="Asunto"
+                  title="Asunto"
                   required />
 
                 <span class="error"></span>
@@ -193,19 +202,29 @@
                   id="message"
                   rows="5"
                   placeholder="Mensaje"
+                  title="Mensaje"
                   required></textarea>
 
                 <span class="error"></span>
               </div>
-              <div class="my-3">
-                <div class="loading">Cargando</div>
-                <div class="error-message"></div>
-                <div class="sent-message">
-                  Tu mensaje ha sido enviado. Gracias!!
+              <div id="checkVerify" class="d-none">
+                <p>La información que va a mandar es esta:</p>
+                <p>Nombre: <span id="checknombre"></span></p>
+                <p>E-mail: <span id="checkemail"></span></p>
+                <p>Asunto: <span id="checkasunto"></span></p>
+                <p>Mnesaje: <span id="checkmensaje"></span></p>
+                <p>¿Es correcta?</p>
+                <div class="d-flex justify-content-around">
+                  <button class="boton red" id="rollback" type="button">
+                    No
+                  </button>
+                  <button class="boton green" id="commit" type="button">
+                    Si
+                  </button>
                 </div>
               </div>
-              <div class="text-center">
-                <button type="submit">Enviar</button>
+              <div class="text-center d-block" id="divSendContact">
+                <button type="submit" id="sendContact">Enviar</button>
               </div>
             </form>
           </div>
