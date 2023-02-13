@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -72,7 +72,9 @@
         <!-- .navbar -->
       </div>
     </header>
-    <!-- End Header -->
+    <!-- End Header
+    TODO:EXTREMIANA
+    -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
@@ -103,7 +105,7 @@
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-6">
             <div class="info-box mb-4">
-              <i class="bx bx-map"></i>
+              <em class="bx bx-map"></em>
               <h3>Nuestra Dirección</h3>
               <p>P.º del Prior, 97, 26004 Logroño, La Rioja</p>
             </div>
@@ -111,7 +113,7 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="info-box mb-4">
-              <i class="bx bx-envelope"></i>
+              <em class="bx bx-envelope"></em>
               <h3>Nuestro Email</h3>
               <a href="mailto:oficina@iescomercio.com"
                 >oficina@iescomercio.com</a
@@ -121,7 +123,7 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="info-box mb-4">
-              <i class="bx bx-phone-call"></i>
+              <em class="bx bx-phone-call"></em>
               <h3>Llámanos</h3>
               <a href="tel:+34941256957">+34 941 25 69 57</a>
             </div>
@@ -131,11 +133,18 @@
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-6">
             <iframe
+              title="Nuestra ubicacion"
               class="mb-4 mb-lg-0"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2943.019886288553!2d-2.432158084273056!3d42.46986573615211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5aab0dbd9ed72d%3A0xda98798954220d52!2sIES%20Comercio!5e0!3m2!1ses!2ses!4v1673984650809!5m2!1ses!2ses"
               frameborder="0"
               style="border: 0; width: 100%; height: 384px"
-              allowfullscreen></iframe>
+              allowfullscreen
+              >Tu navegador no soporta iframes</iframe
+            >
+            <span class="visually-hidden"
+              >Mapa con la ubicación de la empresa (42.47018647066151,
+              -2.429883169318494)</span
+            >
           </div>
 
           <div class="col-lg-6">
@@ -146,62 +155,86 @@
               id="formcontacto">
               <div class="row">
                 <div class="col form-group">
+                  <label for="name">Nombre:</label>
                   <input
                     type="text"
                     name="name"
                     class="form-control"
                     id="name"
                     placeholder="Tu Nombre"
+                    title="Nombre"
                     required />
+
                   <span class="error"></span>
                 </div>
                 <div class="col form-group">
+                  <label for="Email">Email:</label>
                   <input
                     type="email"
                     class="form-control"
                     name="email"
                     id="Email"
                     placeholder="Tu email"
+                    title="Email"
                     required />
+
                   <span class="error"></span>
                 </div>
               </div>
               <div class="form-group">
+                <label for="asunto">Asunto:</label>
                 <input
                   type="text"
                   class="form-control"
                   name="subject"
                   id="asunto"
                   placeholder="Asunto"
+                  title="Asunto"
                   required />
+
                 <span class="error"></span>
               </div>
               <div class="form-group">
+                <label for="message">Mensaje:</label>
                 <textarea
                   class="form-control"
                   name="message"
                   id="message"
                   rows="5"
                   placeholder="Mensaje"
+                  title="Mensaje"
                   required></textarea>
+
                 <span class="error"></span>
               </div>
-              <div class="my-3">
-                <div class="loading">Cargando</div>
-                <div class="error-message"></div>
-                <div class="sent-message">
-                  Tu mensaje ha sido enviado. Gracias!!
+              <div id="checkVerify" class="d-none">
+                <p>La información que va a mandar es esta:</p>
+                <p>Nombre: <span id="checknombre"></span></p>
+                <p>E-mail: <span id="checkemail"></span></p>
+                <p>Asunto: <span id="checkasunto"></span></p>
+                <p>Mnesaje: <span id="checkmensaje"></span></p>
+                <p>¿Es correcta?</p>
+                <div class="d-flex justify-content-around">
+                  <button class="boton red" id="rollback" type="button">
+                    No
+                  </button>
+                  <button class="boton green" id="commit" type="button">
+                    Si
+                  </button>
                 </div>
               </div>
-              <div class="text-center">
-                <button type="submit">Enviar</button>
+              <div class="text-center d-block" id="divSendContact">
+                <button type="submit" id="sendContact">Enviar</button>
               </div>
             </form>
           </div>
         </div>
       </div>
     </section>
-    <!-- End Contact Section -->
+    <!-- End Contact Section 
+   TODO: EXTREMIANA
+    -->
+
     <footer id="footer">
       <div class="footer-top">
         <div class="container">
@@ -318,7 +351,9 @@
     <a
       href="#"
       class="back-to-top d-flex align-items-center justify-content-center"
-      ><i class="bi bi-arrow-up-short"></i
+      ><i
+        class="bi bi-arrow-up-short"
+        alt="Flecha para subir arriba de la página"></i
     ></a>
 
     <!-- Vendor JS Files -->

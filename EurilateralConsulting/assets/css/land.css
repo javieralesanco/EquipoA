@@ -9,4 +9,32 @@
 
 .boton:hover {
     cursor: pointer;
+    color: #fff;
+    background: #3b8af2;
+}
+
+input:invalid,
+textarea:empty {
+    border: 1px solid red;
+}
+
+input:valid,
+textarea:valid {
+    border: 1px solid greenyellow;
+}
+
+.red {
+    background-color: #A00;
+}
+
+.green {
+    background-color: #0A0;
+}
+
+.red:hover {
+    background-color: #A22;
+}
+
+.green:hover {
+    background-color: #2A2;
 }
