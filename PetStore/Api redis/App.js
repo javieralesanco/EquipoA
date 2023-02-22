@@ -12,13 +12,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/pets', async (req, res) => {
-    res.status(200).json(await getCars());
+    res.status(200).json(await getAllPets());
 });
 
 app.get('/pets/:id', async (req, res) => {
     const id = req.params.id;
 
-    const pet = await getCarByID(id);
+    const pet = await getPet(id);
 
     if (pet) {
         res.status(200).json(pet);
@@ -31,14 +31,14 @@ app.get('/pets/:id', async (req, res) => {
 app.post('/pets', async (req, res) => {
     const pet = req.body;
 
-    const petDb = await getCarByNumBastidor(pet.id);
+    const petDb = await getPet(pet.id);
 
     if (petDb) {
         res.status(400).send("La mascota ya esta definida en la bd");
         return;
     }
 
-    const newPet = await insertCar(pet);
+    const newPet = await insertPet(pet);
     if (newPet) {
         res.json(pet);
         return;
@@ -49,7 +49,7 @@ app.post('/pets', async (req, res) => {
 app.delete('/pets/:id', async (req, res) => {
     const id = req.params.id;
 
-    if (await deleteCar(id)) {
+    if (await deletePet(id)) {
         res.send('La mascota ha sido eliminada');
         return;
     }
@@ -66,14 +66,14 @@ app.put('/pets/:id', async (req, res) => {
         return;
     }
 
-    const pet = await getCarByID(id);
+    const pet = await getPet(id);
 
     if (pet === null || pet === undefined) {
         res.status(400).json("Mascota no encontada");
         return;
     }
 
-    if (await modifyCar(newPet)) {
+    if (await modifyPet(newPet)) {
         res.json(newPet);
         return;
     }
@@ -84,14 +84,14 @@ app.put('/pets/:id', async (req, res) => {
 app.post('/user', async (req, res) => {
     const user = req.body;
 
-    const userDb = await getCarByNumBastidor(user.username);
+    const userDb = await getUser(user.username);
 
     if (userDb) {
         res.status(400).send("El usuario con el nick especificado ya existe");
         return;
     }
 
-    const newUser = await insertCar(user);
+    const newUser = await insertUser(user);
     if (newUser) {
         res.json(user);
         return;
@@ -114,7 +114,7 @@ app.get('/user/validar', async (req, res) => {
 app.delete('/user/:username', async (req, res) => {
     const username = req.params.username;
 
-    if (await deleteCar(username)) {
+    if (await deleteUser(username)) {
         res.send('El usuario ha sido eliminado');
         return;
     }
