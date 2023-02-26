@@ -1,22 +1,55 @@
+import { checker } from "./checker.js";
+
 document.addEventListener('DOMContentLoaded', function () {
+    checker();
 
     if (sessionStorage.getItem('sesion') === null) {
         window.location.href = "login.html";
     }
+    document.getElementById('BBDD').addEventListener('change', () => {
+        localStorage.setItem('BD', document.getElementById('BBDD').value);
+        document.getElementById('main').textContent = '';
+        switch (localStorage.getItem('BD')) {
+            case 'Redis':
+                fetch(`https://localhost:42069/pets`)
+                    .then((response) => response.json())
+                    .then((objeto) => {
+                        objeto.forEach(element => {
+                            createPet(element);
+                        });
+                    })
+                break;
+            case 'IndexedDB':
+                //TODO
+                break;
+            case 'SessionStorage':
+                const petsS = JSON.parse(sessionStorage.getItem('Pets')) ?? [];
+                petsS.forEach(element => {
+                    createPet(element);
+                });
+                break;
+            case 'LocalStorage':
+                const petsSL = JSON.parse(localStorage.getItem('Pets')) ?? [];
+                petsL.forEach(element => {
+                    createPet(element);
+                });
+                break;
+        }
+    }, true)
+    // llama('available');
+    // llama('pending');
+    // llama('sold');
 
-    llama('available');
-    llama('pending');
-    llama('sold');
 });
-const llama = (variable) => {
-    fetch(`https://petstore.swagger.io/v2/pet/findByStatus?status=${variable}`)
-        .then((response) => response.json())
-        .then((objeto) => {
-            objeto.forEach(element => {
-                createPet(element);
-            });
-        })
-}
+// const llama = (variable) => {
+//     fetch(`https://petstore.swagger.io/v2/pet/findByStatus?status=${variable}`)
+//         .then((response) => response.json())
+//         .then((objeto) => {
+//             objeto.forEach(element => {
+//                 createPet(element);
+//             });
+//         })
+// }
 const createPet = (pet) => {
     if (pet.category === undefined)
         return;

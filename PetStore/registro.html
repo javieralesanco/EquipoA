@@ -65,8 +65,16 @@
             <input type="tel" placeholder="Introduce numero de telefono" id="telefono" />
           </div>
           <span class="error" id="errorTel">El telefono debe tener al menos 9 dígitos</span>
-          <div class="form-item-other">
-
+          <div class="form-item">
+            <label for="BBDD">Opciones:</label>
+            <select id="BBDD" name="BBDD">
+              <div id="seleccionada">
+              </div>
+              <option value="Redis">Redis</option>
+              <!-- <option value="IndexedDB">IndexedDB</option> -->
+              <option value="SessionStorage">SessionStorage</option>
+              <option value="LocalStorage">LocalStorage</option>
+            </select>
           </div>
           <button type="submit" id="submit">Registrar</button>
         </form>
