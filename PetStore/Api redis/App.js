@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { getCars, getCarByID, getCarByNumBastidor, insertCar, deleteCar, modifyCar } from './cars.service.js';
+import { getAllPets, getPet, insertPet, deletePet, modifyPet, getUser, insertUser, validar, deleteUser } from './pets.service.js';
 import bodyParser from 'body-parser';
 
 const app = express();
