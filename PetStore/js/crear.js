@@ -1,7 +1,7 @@
+import { checker } from "./checker.js";
 
-
-
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", function () {
+  checker();
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
   const form = document.querySelector('#form')
 
@@ -19,12 +19,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const tags = document.querySelector('#tagpet').value;
     const status = document.querySelector('#statuspet').value;
     const fotopet = document.querySelector('#fotopet').value;
-    const idpet = Math.floor(Math.random()*10000000000000);
-
-
-    
-
-
+    const idpet = Math.floor(Math.random() * 10000000000000);
 
     const pet = {
       id: idpet,
@@ -42,13 +37,43 @@ document.addEventListener("DOMContentLoaded", async function () {
       ],
       status: status
     };
-    const data = await postData('https://petstore.swagger.io/v2/pet', pet);
-    console.log(data);
-    form.submit();
+
+    localStorage.setItem('BD', document.getElementById('BBDD').value);
+    switch (localStorage.getItem('BD')) {
+      case 'Redis':
+        const data = await postData('https://localhost:42069/pet', pet);
+        console.log(data);
+        form.submit();
+        break;
+      case 'IndexedDB':
+        //TODO
+        break;
+      case 'SessionStorage':
+        let petsS = JSON.parse(sessionStorage.getItem('Pets')) ?? [];
+        petsS.forEach(element => {
+          if (element.id == pet.id)
+            return;
+        });
+        petsS.push(pet);
+        sessionStorage.setItem('Pets', JSON.stringify(petsS));
+        console.log(pet);
+        form.submit();
+        break;
+      case 'LocalStorage':
+        let petsL = JSON.parse(localStorage.getItem('Pets')) ?? [];
+        petsL.forEach(element => {
+          if (element.id == pet.id)
+            return;
+        });
+        petsL.push(pet);
+        localStorage.setItem('Pets', JSON.stringify(petsL));
+        console.log(pet);
+        form.submit();
+        break;
+    }
   }, false);
 });
 
-// Ejemplo implementando el metodo POST:
 async function postData(url = '', data = {}) {
   await fetch(url, {
     method: 'POST',

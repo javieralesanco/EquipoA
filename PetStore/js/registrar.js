@@ -1,14 +1,14 @@
 "use strict";
+import { checker } from "./checker.js";
 
 document.addEventListener("DOMContentLoaded", function () {
+    checker();
     resetErrores();
     const form = document.getElementById("formulario");
 
     form.addEventListener("submit", async (event) => {
         resetErrores();
         event.preventDefault();
-        event.stopPropagation();
-
 
         const usuario = document.getElementById("usuario").value;
         const nombre = document.getElementById("nombre").value;
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (validarTelefono(telefono)) { error = true; }
 
         if (!error) {
-
+            localStorage.setItem('BD', document.getElementById('BBDD').value);
             const data = {
 
                 "username": usuario,
@@ -39,7 +39,36 @@ document.addEventListener("DOMContentLoaded", function () {
                 "userStatus": 1
             };
 
-            await postData(data, usuario);
+            switch (localStorage.getItem('BD')) {
+                case 'Redis':
+                    await postData(data, usuario);
+                    break;
+                case 'IndexedDB':
+                    //TODO
+                    break;
+                case 'SessionStorage':
+                    let usersS = JSON.parse(sessionStorage.getItem('Users')) ?? [];
+                    usersS.forEach(element => {
+                        if (element.username == data.username && element.password == data.password)
+                            return;
+                    });
+                    sessionStorage.setItem("sesion", JSON.stringify(usuario));
+                    usersS.push(data);
+                    sessionStorage.setItem('Users', JSON.stringify(usersS));
+                    window.location.href = "informacion.html";
+                    break;
+                case 'LocalStorage':
+                    let usersL = JSON.parse(localStorage.getItem('Users')) ?? [];
+                    usersL.forEach(element => {
+                        if (element.username == data.username && element.password == data.password)
+                            return;
+                    });
+                    sessionStorage.setItem("sesion", JSON.stringify(usuario));
+                    usersL.push(data);
+                    localStorage.setItem('Users', JSON.stringify(usersL));
+                    window.location.href = "informacion.html";
+                    break;
+            }
 
 
         }

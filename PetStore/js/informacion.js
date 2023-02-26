@@ -1,6 +1,8 @@
 'use strict'
+import { checker } from "./checker.js";
 
 document.addEventListener("DOMContentLoaded", function () {
+    checker();
     if (sessionStorage.getItem('sesion') === null) {
         window.location.href = "login.html";
     }
@@ -44,20 +46,82 @@ function mostrarMascota(pet) {
 
 function eliminarMascota(id) {
     const element = document.querySelector('.informacionAnimales');
+    switch (localStorage.getItem('BD')) {
+        case 'Redis':
+            fetch(`https://localhost:42069/pet/${id}`, { method: 'DELETE' })
+                .then(() => element.innerHTML = 'Delete successful')
+                .then(() => element.classList += ' whiteLetters');
+            break;
+        case 'IndexedDB':
+            //TODO
+            break;
+        case 'SessionStorage':
+            const petsS = JSON.parse(sessionStorage.getItem('Pets')) ?? [];
+            let newPetsS = [];
+            petsS.forEach(element => {
+                if (element.id != id) {
+                    newPetsS.push(element);
+                }
+            });
+            if (petsS.length != newPetsS.length) {
+                sessionStorage.setItem('Pets', JSON.stringify(newPetsS));
+                element.innerHTML = 'Delete successful';
+                element.classList += ' whiteLetters';
+            }
+            break;
+        case 'LocalStorage':
+            const petsL = JSON.parse(localStorage.getItem('Pets')) ?? [];
+            let newPetsL = [];
+            petsL.forEach(element => {
+                if (element.id != id) {
+                    newPetsL.push(element);
+                }
+            });
+            if (petsL.length != newPetsL.length) {
+                localStorage.setItem('Pets', JSON.stringify(newPetsL));
+                element.innerHTML = 'Delete successful';
+                element.classList += ' whiteLetters';
+            }
+            break;
+    }
     fetch(`https://petstore.swagger.io/v2/pet/${id}`, { method: 'DELETE' })
         .then(() => element.innerHTML = 'Delete successful')
         .then(() => element.classList += ' whiteLetters');
 }
 
 function getPet(id) {
-    fetch(`https://petstore.swagger.io/v2/pet/${id}`)
-        .then((response) => response.json())
-        .then(pet => {
-            mostrarMascota(pet);
-        })
-        .catch(error => {
-            console.error(error);
-        });
+    localStorage.setItem('BD', document.getElementById('BBDD').value);
+    switch (localStorage.getItem('BD')) {
+        case 'Redis':
+            fetch(`https://localhost:42069/pet/${id}`)
+                .then((response) => response.json())
+                .then(pet => {
+                    mostrarMascota(pet);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            break;
+        case 'IndexedDB':
+            //TODO
+            break;
+        case 'SessionStorage':
+            const petsS = JSON.parse(sessionStorage.getItem('Pets')) ?? [];
+            petsS.forEach(element => {
+                if (element.id == id) {
+                    mostrarMascota(element);
+                }
+            });
+            break;
+        case 'LocalStorage':
+            const petsL = JSON.parse(localStorage.getItem('Pets')) ?? [];
+            petsL.forEach(element => {
+                if (element.id == id) {
+                    mostrarMascota(element);
+                }
+            });
+            break;
+    }
 }
 
 function getIdFromUrl() {
@@ -69,7 +133,6 @@ function getIdFromUrl() {
 
 async function modificarPet(event) {
     event.preventDefault()
-    event.stopPropagation()
 
     if (!form.checkValidity()) {
         return;
@@ -98,7 +161,30 @@ async function modificarPet(event) {
         ],
         status: status
     };
-    await putData('https://petstore.swagger.io/v2/pet', pet);
+
+    localStorage.setItem('BD', document.getElementById('BBDD').value);
+    switch (localStorage.getItem('BD')) {
+        case 'Redis':
+            await putData('https://localhost:42069/pet', pet);
+            break;
+        case 'IndexedDB':
+            //TODO
+            break;
+        case 'SessionStorage':
+            let petsS = JSON.parse(sessionStorage.getItem('Pets')) ?? [];
+            for (let index = 0; index < petsS.length; index++)
+                if (petsS[i].id == pet.id)
+                    petsS[i] = pet;
+            sessionStorage.setItem('Pets', JSON.stringify(petsS));
+            break;
+        case 'LocalStorage':
+            let petsL = JSON.parse(localStorage.getItem('Pets')) ?? [];
+            for (let index = 0; index < petsL.length; index++)
+                if (petsL[i].id == pet.id)
+                    petsL[i] = pet;
+            localStorage.setItem('Pets', JSON.stringify(petsL));
+            break;
+    }
 }
 
 async function putData(url = '', data = {}) {

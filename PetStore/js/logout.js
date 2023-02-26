@@ -8,13 +8,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     btnLogout.addEventListener("click", async (event) => {
 
-
-        let url = 'https://petstore.swagger.io/v2/user/logout';
-        fetch(url)
-            .then(sessionStorage.removeItem("sesion"))
-            .then(window.location.href = "login.html")
-            .catch(err => {
-                alert("Error al cerrar sesion");
-            });
+        sessionStorage.removeItem("sesion");
+        // let url = 'https://petstore.swagger.io/v2/user/logout';
+        // fetch(url)
+        //     .then(sessionStorage.removeItem("sesion"))
+        //     .then(window.location.href = "login.html")
+        //     .catch(err => {
+        //         alert("Error al cerrar sesion");
+        //     });
     });
 });
