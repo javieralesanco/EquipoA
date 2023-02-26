@@ -97,7 +97,7 @@ function validarTelefono(valor) {
 }
 
 async function postData(datos, usuario) {
-    fetch('https://petstore.swagger.io/v2/user', {
+    fetch('https://localhost:42069/user', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
